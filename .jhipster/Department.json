@@ -1,0 +1,27 @@
+{
+  "applications": "*",
+  "changelogDate": "20230414090807",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "department",
+  "fields": [
+    {
+      "fieldName": "departmentName",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Department",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "employee",
+      "ownerSide": true,
+      "relationshipName": "employee",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}
