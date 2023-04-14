@@ -1,0 +1,39 @@
+
+entity Employee {
+	firstName String
+    lastName String
+    email String
+    phoneNumber String
+}
+entity Department{
+departmentName String
+}
+
+entity Address{
+streetAddress String
+postalCode String
+city String
+}
+
+
+relationship OneToOne {
+	Department{employee} to Employee
+}
+
+relationship OneToMany{
+Employee{address} to Address
+}
+ // Set pagination options
+paginate * with infinite-scroll
+paginate * with pagination
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service * with serviceClass
+
+filter *
+// Set an angular suffix
+// angularSuffix * with tvg
+
