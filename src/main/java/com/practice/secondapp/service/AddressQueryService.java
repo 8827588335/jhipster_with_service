@@ -1,7 +1,6 @@
 package com.practice.secondapp.service;
 
 import com.practice.secondapp.domain.*; // for static metamodels
-import com.practice.secondapp.domain.Address;
 import com.practice.secondapp.repository.AddressRepository;
 import com.practice.secondapp.service.criteria.AddressCriteria;
 import com.practice.secondapp.service.dto.AddressDTO;
@@ -98,6 +97,9 @@ public class AddressQueryService extends QueryService<Address> {
             }
             if (criteria.getCity() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getCity(), Address_.city));
+            }
+            if (criteria.getLandmark() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getLandmark(), Address_.landMark));
             }
             if (criteria.getEmployeeId() != null) {
                 specification =

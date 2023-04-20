@@ -36,6 +36,11 @@ public class Employee implements Serializable {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    //-----------------add code--------------//
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Address address;
+
     @OneToMany(mappedBy = "employee")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "employee" }, allowSetters = true)
@@ -110,6 +115,14 @@ public class Employee implements Serializable {
 
     public Set<Address> getAddresses() {
         return this.addresses;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public void setAddresses(Set<Address> addresses) {

@@ -31,6 +31,10 @@ public class Address implements Serializable {
     @Column(name = "city")
     private String city;
 
+    //here add field like landmark
+    @Column(name = "landmark")
+    private String landMark;
+
     @ManyToOne
     @JsonIgnoreProperties(value = { "addresses" }, allowSetters = true)
     private Employee employee;
@@ -89,6 +93,20 @@ public class Address implements Serializable {
         this.city = city;
     }
 
+    //here write the getter and setter method
+    public String getLandMark() {
+        return this.landMark;
+    }
+
+    public Address landMark(String landMark) {
+        this.setLandmark(landMark);
+        return this;
+    }
+
+    public void setLandmark(String landMark) {
+        this.landMark = landMark;
+    }
+
     public Employee getEmployee() {
         return this.employee;
     }
@@ -129,6 +147,7 @@ public class Address implements Serializable {
             ", streetAddress='" + getStreetAddress() + "'" +
             ", postalCode='" + getPostalCode() + "'" +
             ", city='" + getCity() + "'" +
+            ", landmark='" + getLandMark() +
             "}";
     }
 }

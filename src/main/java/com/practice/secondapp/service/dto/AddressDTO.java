@@ -9,6 +9,8 @@ import java.util.Objects;
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class AddressDTO implements Serializable {
 
+    //	public static AddressDTO address;
+
     private Long id;
 
     private String streetAddress;
@@ -16,6 +18,8 @@ public class AddressDTO implements Serializable {
     private String postalCode;
 
     private String city;
+
+    private String landMark;
 
     private EmployeeDTO employee;
 
@@ -49,6 +53,16 @@ public class AddressDTO implements Serializable {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    //here write getter and setter method
+
+    public String getLandMark() {
+        return landMark;
+    }
+
+    public void setLandMark(String landMark) {
+        this.landMark = landMark;
     }
 
     public EmployeeDTO getEmployee() {
@@ -88,7 +102,8 @@ public class AddressDTO implements Serializable {
             ", streetAddress='" + getStreetAddress() + "'" +
             ", postalCode='" + getPostalCode() + "'" +
             ", city='" + getCity() + "'" +
-            ", employee=" + getEmployee() +
+            ", employee=" + getEmployee() +"'"+
+            ", landmark=" + getLandMark()+
             "}";
     }
 }

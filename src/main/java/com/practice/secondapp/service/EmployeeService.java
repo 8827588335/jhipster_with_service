@@ -1,12 +1,17 @@
 package com.practice.secondapp.service;
 
+import com.practice.secondapp.domain.Address;
 import com.practice.secondapp.domain.Employee;
+import com.practice.secondapp.repository.AddressRepository;
 import com.practice.secondapp.repository.EmployeeRepository;
+import com.practice.secondapp.service.dto.AddressDTO;
 import com.practice.secondapp.service.dto.EmployeeDTO;
 import com.practice.secondapp.service.mapper.EmployeeMapper;
+import com.practice.secondapp.web.rest.errors.BadRequestAlertException;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,6 +30,13 @@ public class EmployeeService {
 
     private final EmployeeMapper employeeMapper;
 
+    //-----------------code add------------------//
+    @Autowired
+    private AddressService addressService;
+
+    @Autowired
+    private AddressRepository addressRepository;
+
     public EmployeeService(EmployeeRepository employeeRepository, EmployeeMapper employeeMapper) {
         this.employeeRepository = employeeRepository;
         this.employeeMapper = employeeMapper;
@@ -38,6 +50,15 @@ public class EmployeeService {
      */
     public EmployeeDTO save(EmployeeDTO employeeDTO) {
         log.debug("Request to save Employee : {}", employeeDTO);
+        //-------------------------------------------------------------------//
+        if (employeeDTO.getAddress() != null) {
+            AddressDTO addressDTO = employeeDTO.getAddress();
+            if (addressDTO.getId() != null) {
+                throw new BadRequestAlertException("a new address connot alrady have an Id", "Address", "indexists");
+            }
+            AddressDTO.address = addressService.save(addressDTO);
+            employeeDTO.setAddress(addressDTO);
+        }
         Employee employee = employeeMapper.toEntity(employeeDTO);
         employee = employeeRepository.save(employee);
         return employeeMapper.toDto(employee);

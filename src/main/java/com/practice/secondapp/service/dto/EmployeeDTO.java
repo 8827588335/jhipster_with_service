@@ -19,6 +19,16 @@ public class EmployeeDTO implements Serializable {
 
     private String phoneNumber;
 
+    private AddressDTO address;
+
+    public AddressDTO getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressDTO address) {
+        this.address = address;
+    }
+
     public Long getId() {
         return id;
     }
@@ -80,15 +90,22 @@ public class EmployeeDTO implements Serializable {
         return Objects.hash(this.id);
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
-        return "EmployeeDTO{" +
-            "id=" + getId() +
-            ", firstName='" + getFirstName() + "'" +
-            ", lastName='" + getLastName() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", phoneNumber='" + getPhoneNumber() + "'" +
-            "}";
+        return (
+            "EmployeeDTO [id=" +
+            id +
+            ", firstName=" +
+            firstName +
+            ", lastName=" +
+            lastName +
+            ", email=" +
+            email +
+            ", phoneNumber=" +
+            phoneNumber +
+            ", address=" +
+            address +
+            "]"
+        );
     }
 }

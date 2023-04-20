@@ -29,6 +29,10 @@ public class AddressCriteria implements Serializable, Criteria {
 
     private StringFilter city;
 
+    //
+
+    private StringFilter landMark;
+
     private LongFilter employeeId;
 
     private Boolean distinct;
@@ -40,6 +44,7 @@ public class AddressCriteria implements Serializable, Criteria {
         this.streetAddress = other.streetAddress == null ? null : other.streetAddress.copy();
         this.postalCode = other.postalCode == null ? null : other.postalCode.copy();
         this.city = other.city == null ? null : other.city.copy();
+        this.landMark = other.landMark == null ? null : other.landMark.copy();
         this.employeeId = other.employeeId == null ? null : other.employeeId.copy();
         this.distinct = other.distinct;
     }
@@ -109,6 +114,25 @@ public class AddressCriteria implements Serializable, Criteria {
         this.city = city;
     }
 
+    //here write the code for landmark
+
+    public StringFilter getLandmark() {
+        return landMark;
+    }
+
+    public StringFilter landmark() {
+        if (landMark == null) {
+            landMark = new StringFilter();
+        }
+        return landMark;
+    }
+
+    public void setLandmark(StringFilter landMark) {
+        this.landMark = landMark;
+    }
+
+    ///----------------------------------/////end code
+
     public LongFilter getEmployeeId() {
         return employeeId;
     }
@@ -146,6 +170,7 @@ public class AddressCriteria implements Serializable, Criteria {
             Objects.equals(streetAddress, that.streetAddress) &&
             Objects.equals(postalCode, that.postalCode) &&
             Objects.equals(city, that.city) &&
+            Objects.equals(landMark, that.landMark) &&
             Objects.equals(employeeId, that.employeeId) &&
             Objects.equals(distinct, that.distinct)
         );
@@ -153,7 +178,7 @@ public class AddressCriteria implements Serializable, Criteria {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, streetAddress, postalCode, city, employeeId, distinct);
+        return Objects.hash(id, streetAddress, postalCode, city, landMark, employeeId, distinct);
     }
 
     // prettier-ignore
@@ -164,6 +189,7 @@ public class AddressCriteria implements Serializable, Criteria {
             (streetAddress != null ? "streetAddress=" + streetAddress + ", " : "") +
             (postalCode != null ? "postalCode=" + postalCode + ", " : "") +
             (city != null ? "city=" + city + ", " : "") +
+            (landMark != null ? "landmark=" + landMark + ", " : "") +
             (employeeId != null ? "employeeId=" + employeeId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
